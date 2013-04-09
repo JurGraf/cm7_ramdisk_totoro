@@ -1,0 +1,270 @@
+on early-init
+    start ueventd
+
+on init
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
+
+    mkdir /etc
+    mkdir /sdcard
+    mkdir /system
+    mkdir /system/bin
+    mkdir /data
+    mkdir /cache
+    mkdir /tmp
+    mkdir /dbdata
+
+    mkdir /mnt 0775 root root
+
+    #mount /tmp /tmp tmpfs   
+
+on early-fs
+
+    chmod 775 /recovery/sbin/recovery
+    # rfs drivers
+    insmod /lib/modules/fsr.ko
+    insmod /lib/modules/fsr_stl.ko
+    insmod /lib/modules/rfs_fat.ko
+    insmod /lib/modules/rfs_glue.ko
+    insmod /lib/modules/sec_param.ko
+
+on fs
+    mount tmpfs tmpfs /tmp mode=0755
+    mount ext4 /dev/stl10 /cache nosuid nodev noatime wait errors=panic
+    mount rfs /dev/stl10 /cache nosuid nodev
+
+on post-fs
+
+    chmod 755 /etc
+    chmod 755 /res
+    chmod 775 /res/keys
+    chmod 775 /res/recovery.fstab
+    chmod 755 /res/images
+    chmod 755 /res/images/240x320
+    chmod 775 /res/images/240x320/0.png
+    chmod 775 /res/images/240x320/1.png
+    chmod 775 /res/images/240x320/2.png
+    chmod 775 /res/images/240x320/3.png
+    chmod 775 /res/images/240x320/4.png
+    chmod 775 /res/images/240x320/5.png
+    chmod 775 /res/images/240x320/6.png
+    chmod 775 /res/images/240x320/7.png
+    chmod 775 /res/images/240x320/8.png
+    chmod 775 /res/images/240x320/9.png
+    chmod 775 /res/images/240x320/a.png
+    chmod 775 /res/images/240x320/abc.png
+    chmod 775 /res/images/240x320/alt.png
+    chmod 775 /res/images/240x320/alt2.png
+    chmod 775 /res/images/240x320/and.png
+    chmod 775 /res/images/240x320/b.png
+    chmod 775 /res/images/240x320/back_slash.png
+    chmod 775 /res/images/240x320/backtick.png
+    chmod 775 /res/images/240x320/c.png
+    chmod 775 /res/images/240x320/cap.png
+    chmod 775 /res/images/240x320/caps_a.png
+    chmod 775 /res/images/240x320/caps_b.png
+    chmod 775 /res/images/240x320/caps_c.png
+    chmod 775 /res/images/240x320/caps_d.png
+    chmod 775 /res/images/240x320/caps_e.png
+    chmod 775 /res/images/240x320/caps_f.png
+    chmod 775 /res/images/240x320/caps_g.png
+    chmod 775 /res/images/240x320/caps_h.png
+    chmod 775 /res/images/240x320/caps_i.png
+    chmod 775 /res/images/240x320/caps_j.png
+    chmod 775 /res/images/240x320/caps_k.png
+    chmod 775 /res/images/240x320/caps_l.png
+    chmod 775 /res/images/240x320/caps_m.png
+    chmod 775 /res/images/240x320/caps_n.png
+    chmod 775 /res/images/240x320/caps_o.png
+    chmod 775 /res/images/240x320/caps_p.png
+    chmod 775 /res/images/240x320/caps_q.png
+    chmod 775 /res/images/240x320/caps_r.png
+    chmod 775 /res/images/240x320/caps_s.png
+    chmod 775 /res/images/240x320/caps_t.png
+    chmod 775 /res/images/240x320/caps_u.png
+    chmod 775 /res/images/240x320/caps_v.png
+    chmod 775 /res/images/240x320/caps_w.png
+    chmod 775 /res/images/240x320/caps_x.png
+    chmod 775 /res/images/240x320/caps_y.png
+    chmod 775 /res/images/240x320/caps_z.png
+    chmod 775 /res/images/240x320/colon.png
+    chmod 775 /res/images/240x320/comma.png
+    chmod 775 /res/images/240x320/d.png
+    chmod 775 /res/images/240x320/decryption1.png
+    chmod 775 /res/images/240x320/decryption2.png
+    chmod 775 /res/images/240x320/del.png
+    chmod 775 /res/images/240x320/dollar.png
+    chmod 775 /res/images/240x320/dot.png
+    chmod 775 /res/images/240x320/double_quotes.png
+    chmod 775 /res/images/240x320/e.png
+    chmod 775 /res/images/240x320/empty.png
+    chmod 775 /res/images/240x320/encryption1.png
+    chmod 775 /res/images/240x320/encryption2.png
+    chmod 775 /res/images/240x320/equal.png
+    chmod 775 /res/images/240x320/exclaim.png
+    chmod 775 /res/images/240x320/f.png
+    chmod 775 /res/images/240x320/fwd_slash.png
+    chmod 775 /res/images/240x320/g.png
+    chmod 775 /res/images/240x320/h.png
+    chmod 775 /res/images/240x320/hyphen.png
+    chmod 775 /res/images/240x320/i.png
+    chmod 664 /res/images/240x320/icon_datadecrypted.png
+    chmod 664/res/images/240x320/icon_dataencrypted.png
+    chmod 775 /res/images/240x320/icon_decryption.png
+    chmod 775 /res/images/240x320/icon_encryption.png
+    chmod 775 /res/images/240x320/icon_error.png
+    chmod 775 /res/images/240x320/icon_firmware_error.png
+    chmod 775 /res/images/240x320/icon_firmware_install.png
+    chmod 775 /res/images/240x320/icon_installing.png
+    chmod 775 /res/images/240x320/icon_passcode.png
+    chmod 664 /res/images/240x320/indeterminate1.png
+    chmod 664 /res/images/240x320/indeterminate2.png
+    chmod 664 /res/images/240x320/indeterminate3.png
+    chmod 664 /res/images/240x320/indeterminate4.png
+    chmod 664 /res/images/240x320/indeterminate5.png
+    chmod 664 /res/images/240x320/indeterminate6.png
+    chmod 775 /res/images/240x320/j.png
+    chmod 775 /res/images/240x320/k.png
+    chmod 775 /res/images/240x320/l.png
+    chmod 775 /res/images/240x320/left_angular_brace.png
+    chmod 775 /res/images/240x320/left_curly_brace.png
+    chmod 775 /res/images/240x320/left_round_brace.png
+    chmod 775 /res/images/240x320/left_square_brace.png
+    chmod 775 /res/images/240x320/m.png
+    chmod 775 /res/images/240x320/minus.png
+    chmod 775 /res/images/240x320/n.png
+    chmod 775 /res/images/240x320/numeric.png
+    chmod 775 /res/images/240x320/o.png 0 0
+    chmod 775 /res/images/240x320/ok.png
+    chmod 775 /res/images/240x320/p.png
+    chmod 775 /res/images/240x320/passcode_key_relative_layout_eng.ini
+    chmod 775 /res/images/240x320/password_confirm_45.png
+    chmod 775 /res/images/240x320/password_highlight.png
+    chmod 775 /res/images/240x320/password_last_time.png
+    chmod 775 /res/images/240x320/password_max16_45.png
+    chmod 775 /res/images/240x320/password_not_matched_wipe_data.png
+    chmod 775 /res/images/240x320/password_notmatched_45.png
+    chmod 775 /res/images/240x320/password_retry_45.png
+    chmod 775 /res/images/240x320/password_star_221.png
+    chmod 775 /res/images/240x320/percent.png
+    chmod 775 /res/images/240x320/pipe.png
+    chmod 775 /res/images/240x320/plus.png
+    chmod 775 /res/images/240x320/pound.png
+    chmod 775 /res/images/240x320/progress_bar_empty.png
+    chmod 775 /res/images/240x320/progress_bar_empty_left_round.png
+    chmod 775 /res/images/240x320/progress_bar_empty_right_round.png
+    chmod 775 /res/images/240x320/progress_bar_fill.png
+    chmod 775 /res/images/240x320/progress_bar_left_round.png
+    chmod 775 /res/images/240x320/progress_bar_right_round.png
+    chmod 664 /res/images/240x320/progress_empty.png
+    chmod 664 /res/images/240x320/progress_fill.png
+    chmod 775 /res/images/240x320/q.png
+    chmod 775 /res/images/240x320/question_mark.png
+    chmod 775 /res/images/240x320/r.png
+    chmod 775 /res/images/240x320/rate.png
+    chmod 775 /res/images/240x320/right_angular_brace.png
+    chmod 775 /res/images/240x320/right_curly_brace.png
+    chmod 775 /res/images/240x320/right_round_brace.png
+    chmod 775 /res/images/240x320/right_square_brace.png
+    chmod 775 /res/images/240x320/s.png
+    chmod 775 /res/images/240x320/semi_colon.png
+    chmod 775 /res/images/240x320/shift.png
+    chmod 775 /res/images/240x320/shift2.png
+    chmod 775 /res/images/240x320/single_quote.png
+    chmod 775 /res/images/240x320/space.png
+    chmod 775 /res/images/240x320/space2.png
+    chmod 775 /res/images/240x320/star.png
+    chmod 775 /res/images/240x320/t.png
+    chmod 775 /res/images/240x320/tilde.png
+    chmod 775 /res/images/240x320/u.png
+    chmod 775 /res/images/240x320/under_score.png
+    chmod 775 /res/images/240x320/v.png
+    chmod 775 /res/images/240x320/w.png
+    chmod 775 /res/images/240x320/x.png
+    chmod 775 /res/images/240x320/y.png
+    chmod 775 /res/images/240x320/z.png
+    chmod 775 /res/images/icon_error.png
+    chmod 775 /res/images/icon_installing.png
+    chmod 775 /res/images/indeterminate1.png
+    chmod 775 /res/images/indeterminate2.png
+    chmod 775 /res/images/indeterminate3.png
+    chmod 775 /res/images/indeterminate4.png
+    chmod 775 /res/images/indeterminate5.png
+    chmod 775 /res/images/indeterminate6.png
+    chmod 775 /res/images/progress_empty.png
+    chmod 775 /res/images/progress_fill.png
+    chmod 755 /sbin
+    chmod 750 /sbin/adbd
+    chmod 750 /sbin/bmlunlock
+    chmod 750 /sbin/fat.format
+    chmod 750 /sbin/fota_logo.png
+    chmod 750 /sbin/ua_launcher
+    chmod 775 /sbin/recovery.bin
+    chmod 775 /sbin/recovery
+    chmod 755 /recovery
+    chmod 664 /recovery/default.prop
+    chmod 664 /recovery/fota.rc
+    chmod 775 /recovery/init
+    chmod 775 /recovery/init.rc
+    chmod 664 /recovery/ueventd.goldfish.rc
+    chmod 664 /recovery/uevent.rc
+    chmod 755 /recovery/etc
+    chmod 664 /recovery/etc/recovery.fstab
+    chmod 755 /recovery/res
+    chmod 664 /recovery/res/keys
+    chmod 755 /recovery/res/images
+    chmod 775 /recovery/res/images/icon_installing.png
+    chmod 664 /recovery/res/images/indeterminate5.png
+    chmod 775 /recovery/res/images/icon_error.png
+    chmod 664 /recovery/res/images/indeterminate2.png
+    chmod 664 /recovery/res/images/icon_clockwork.png
+    chmod 664 /recovery/res/images/indeterminate6.png
+    chmod 664 /recovery/res/images/icon_firmware_error.png
+    chmod 775 /recovery/res/images/icon_firmware_install.png
+    chmod 664 /recovery/res/images/progress_empty.png
+    chmod 664 /recovery/res/images/progress_fill.png
+    chmod 664 /recovery/res/images/indeterminate4.png
+    chmod 664 /recovery/res/images/indeterminate3.png
+    chmod 664 /recovery/res/images/indeterminate1.png
+    chmod 755 /recovery/sbin
+    chmod 775 /recovery/sbin/e2fsck
+    chmod 775 /recovery/sbin/adbd
+    chmod 775 /recovery/sbin/killrecovery.sh
+    chmod 775 /recovery/sbin/sdparted
+    chmod 775 /recovery/sbin/tune2fs
+    chmod 775 /recovery/sbin/fix_permissions
+    chmod 775 /recovery/sbin/parted
+    chmod 775 /recovery/sbin/nandroid-md5.sh
+
+    write /proc/sys/kernel/panic_on_oops 1
+    write /proc/sys/kernel/hung_task_timeout_secs 0
+    write /proc/cpu/alignment 4
+    write /proc/sys/kernel/sched_latency_ns 10000000
+    write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
+    write /proc/sys/kernel/sched_compat_yield 1
+    write /proc/sys/kernel/sched_child_runs_first 0
+    write /proc/LinuStoreIII/fsbuild_check BUILDING
+on boot
+
+    ifup lo
+    hostname localhost
+    domainname localdomain
+
+    class_start default
+
+service ueventd /sbin/ueventd
+    critical
+
+service recovery /sbin/recovery
+
+service adbd /sbin/adbd recovery
+	disabled
+
+#on property:persist.service.adb.enable=1
+#    start adbd
+
+on property:persist.service.adb.enable=0
+    stop adbd
